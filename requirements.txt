@@ -87,3 +87,7 @@ flake8
 # ============================
 tabulate
 orjson
+
+
+# uv pip install python-jose[cryptography] passlib[bcrypt] 
+# uv pip install 'pydantic[email]'
