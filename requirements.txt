@@ -1,0 +1,89 @@
+# ============================
+# Web Framework
+# ============================
+fastapi
+uvicorn[standard]
+
+# ============================
+# Database
+# ============================
+sqlalchemy
+pymysql
+mysqlclient
+
+# ============================
+# Environment Variables
+# ============================
+python-dotenv
+
+# ============================
+# AI & LLM
+# ============================
+openai
+langchain
+langchain-core
+langchain-community
+langchain-openai
+
+# ============================
+# Data Processing
+# ============================
+pandas
+numpy
+
+# ============================
+# SQL Parsing & Validation
+# ============================
+sqlparse
+
+# ============================
+# Token Counting
+# ============================
+tiktoken
+
+# ============================
+# Charts & Analytics
+# ============================
+matplotlib
+plotly
+
+# ============================
+# Data Validation
+# ============================
+pydantic
+pydantic-settings
+
+# ============================
+# Logging
+# ============================
+loguru
+
+# ============================
+# HTTP Client
+# ============================
+httpx
+requests
+
+# ============================
+# Utilities
+# ============================
+python-dateutil
+
+# ============================
+# Testing
+# ============================
+pytest
+pytest-asyncio
+
+# ============================
+# Code Quality
+# ============================
+black
+isort
+flake8
+
+# ============================
+# Optional (Future Extensions)
+# ============================
+tabulate
+orjson
