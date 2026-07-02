@@ -91,3 +91,4 @@ orjson
 
 # uv pip install python-jose[cryptography] passlib[bcrypt] 
 # uv pip install 'pydantic[email]'
+# uv pip install cryptography pymysql

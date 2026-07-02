@@ -24,7 +24,8 @@ class Settings(BaseSettings):
 
     MAX_QUERY_ROWS: int = 1000
     QUERY_TIMEOUT: int = 30
-
+    ALGORITHM: str = "HS256"
+    DATABASE_SECRET_KEY: str
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore"

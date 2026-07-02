@@ -4,7 +4,7 @@ from app.core.config import settings
 from app.db.database import engine
 from app.db import models
 from app.api.routes.auth import router as auth_router
-# from app.api.routes.users import router as users_router
+from app.api.routes.database import router as database_router
 
 
 
@@ -13,6 +13,9 @@ app = FastAPI(
     version=settings.APP_VERSION,
 )
 
+
+app.include_router(auth_router)
+app.include_router(database_router)
 
 @app.get("/")
 def root():
@@ -39,8 +42,3 @@ def health():
             "database": "disconnected",
             "error": str(e),
         }
-
-
-
-app.include_router(auth_router)
-# app.include_router(users_router)

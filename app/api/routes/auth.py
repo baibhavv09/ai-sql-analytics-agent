@@ -9,11 +9,7 @@ from app.schemas.auth import (
     LoginRequest,
     TokenResponse,
 )
-from app.core.security import (
-    hash_password,
-    verify_password,
-    create_access_token,
-)
+from app.core.security import (hash_password,verify_password,create_access_token)
 
 router = APIRouter(
     prefix="/auth",
