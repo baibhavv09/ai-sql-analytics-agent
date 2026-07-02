@@ -9,7 +9,7 @@ uvicorn[standard]
 # ============================
 sqlalchemy
 pymysql
-mysqlclient
+cryptography
 
 # ============================
 # Environment Variables
@@ -50,8 +50,15 @@ plotly
 # ============================
 # Data Validation
 # ============================
-pydantic
+pydantic[email]
 pydantic-settings
+email-validator
+
+# ============================
+# Auth (JWT + password hashing)
+# ============================
+python-jose[cryptography]
+passlib[bcrypt]
 
 # ============================
 # Logging

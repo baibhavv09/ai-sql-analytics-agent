@@ -1,0 +1,76 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpass
+          MYSQL_DATABASE: sql_analytics_test
+          MYSQL_USER: appuser
+          MYSQL_PASSWORD: apppass
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -u root -prootpass"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      APP_NAME: AI SQL Analytics Agent
+      APP_VERSION: 1.0.0
+      APP_ENV: test
+      SECRET_KEY: test-secret
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_USER: appuser
+      DB_PASSWORD: apppass
+      DB_NAME: sql_analytics_test
+      DATABASE_URL: mysql+pymysql://appuser:apppass@127.0.0.1:3306/sql_analytics_test
+      OPENAI_API_KEY: dummy-key
+      OPENAI_MODEL: gpt-4o-mini
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint with flake8
+        run: |
+          flake8 app --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 app --count --max-line-length=120 --statistics --exit-zero
+
+      - name: Check formatting with black
+        run: black --check app || true
+
+      - name: Check import order with isort
+        run: isort --check-only app || true
+
+      - name: Run tests
+        run: |
+          if [ -d tests ] && [ "$(ls -A tests 2>/dev/null)" ]; then
+            pytest -q
+          else
+            echo "No tests directory or empty — skipping pytest."
+          fi
