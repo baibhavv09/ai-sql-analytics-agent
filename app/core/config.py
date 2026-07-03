@@ -18,14 +18,23 @@ class Settings(BaseSettings):
 
     OPENAI_API_KEY: str
     OPENAI_MODEL: str
+    OPENAI_TEMPERATURE: float = 0.1
+    OPENAI_MAX_TOKENS: int = 1000
 
     LOG_LEVEL: str = "INFO"
     LOG_FILE: str = "logs/app.log"
-
+    
     MAX_QUERY_ROWS: int = 1000
     QUERY_TIMEOUT: int = 30
     ALGORITHM: str = "HS256"
     DATABASE_SECRET_KEY: str
+
+    REDIS_HOST: str = "localhost"
+    REDIS_PORT: int = 6379
+    REDIS_DB: int = 0
+    REDIS_PASSWORD: str | None = None
+    REDIS_CACHE_TTL: int = 600
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         extra="ignore"
