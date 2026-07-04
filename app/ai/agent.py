@@ -6,22 +6,22 @@ from app.prompts.sql_prompt import sql_prompt
 # Import tools 
 from app.ai.tools.schema_tool import schema_tool
 from app.ai.tools.execute_sql_tool import execute_sql_tool
-from app.ai.tools.history_tool import history_tool
-from app.ai.tools.analytics_tool import analytics_tool
+from app.ai.tools.chart_tool import chart_tool
+from app.ai.tools.recommendation_tool import recommendation_tool
 
 
 class SQLAnalyticsAgent:
 
     def __init__(self):
 
-        self.llm = llm_service.get_llm()
-
         self.tools = [
             schema_tool,
             execute_sql_tool,
-            history_tool,
-            analytics_tool,
+            chart_tool,
+            recommendation_tool,
         ]
+
+        self.llm = llm_service.get_llm(self.tools)
 
         self.agent = create_tool_calling_agent(
             llm=self.llm,
@@ -35,22 +35,28 @@ class SQLAnalyticsAgent:
             verbose=True,
             return_intermediate_steps=True,
             handle_parsing_errors=True,
+            max_iterations=5,
+            early_stopping_method="generate",
         )
 
     def invoke(
         self,
         question: str,
-        chat_history=None,
+        user_id: int,
     ):
 
-        chat_history = chat_history or []
+        try:
+            return self.executor.invoke(
+                {
+                    "input": question,
+                    "user_id": user_id,
+                }
+            )
 
-        return self.executor.invoke(
-            {
-                "input": question,
-                "chat_history": chat_history,
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
             }
-        )
+        
 
-
-sql_agent = SQLAnalyticsAgent()

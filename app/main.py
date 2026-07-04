@@ -5,7 +5,7 @@ from app.db.database import engine
 from app.db import models
 from app.api.routes.auth import router as auth_router
 from app.api.routes.database import router as database_router
-
+from app.api.routes.ai import router as ai_router
 
 
 app = FastAPI(
@@ -14,6 +14,8 @@ app = FastAPI(
 )
 
 
+
+app.include_router(ai_router)
 app.include_router(auth_router)
 app.include_router(database_router)
 
