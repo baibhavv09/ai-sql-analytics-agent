@@ -60,3 +60,4 @@ class SQLAnalyticsAgent:
             }
         
 
+sql_agent = SQLAnalyticsAgent()

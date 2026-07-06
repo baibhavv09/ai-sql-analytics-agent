@@ -43,3 +43,5 @@ def execute_sql(
     # History will be added later
 
     return result
+
+execute_sql_tool = execute_sql

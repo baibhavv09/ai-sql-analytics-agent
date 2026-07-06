@@ -216,3 +216,5 @@ class DatabaseService:
             pool_pre_ping=True,
             pool_recycle=3600,
         )
+
+database_service = DatabaseService()
