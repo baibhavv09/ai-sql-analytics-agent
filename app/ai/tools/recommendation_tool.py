@@ -10,3 +10,6 @@ def generate_recommendations(result: dict) -> dict:
     """
 
     return recommendation_service.generate(result)
+
+
+recommendation_tool = generate_recommendations
