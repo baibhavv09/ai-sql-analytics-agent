@@ -133,6 +133,22 @@ class DatabaseService:
             .filter(DatabaseConnection.user_id == user_id)
             .first()
         )
+
+    def get_connection_by_user_id(
+        self,
+        user_id: int,
+    ):
+        """
+        Session-less lookup used by AI tools that don't receive a db dependency.
+        """
+
+        from app.db.database import SessionLocal
+
+        db = SessionLocal()
+        try:
+            return self.get_connection(db=db, user_id=user_id)
+        finally:
+            db.close()
     
     
 
