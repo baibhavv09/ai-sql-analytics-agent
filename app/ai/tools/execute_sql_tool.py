@@ -44,5 +44,4 @@ def execute_sql(
 
     return result
 
-
 execute_sql_tool = execute_sql

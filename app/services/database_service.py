@@ -233,5 +233,4 @@ class DatabaseService:
             pool_recycle=3600,
         )
 
-
 database_service = DatabaseService()

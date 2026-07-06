@@ -11,4 +11,4 @@ def recommend_chart(result: dict) -> dict:
     return chart_service.recommend_chart(result)
 
 
-chart_tool = recommend_chart
+chart_tool= recommend_chart
