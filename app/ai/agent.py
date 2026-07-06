@@ -1,4 +1,4 @@
-from langchain.agents import AgentExecutor, create_tool_calling_agent
+from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 
 from app.ai.llm import llm_service
 from app.prompts.sql_prompt import sql_prompt
@@ -58,5 +58,6 @@ class SQLAnalyticsAgent:
                 "success": False,
                 "error": str(e),
             }
-        
 
+
+sql_agent = SQLAnalyticsAgent()

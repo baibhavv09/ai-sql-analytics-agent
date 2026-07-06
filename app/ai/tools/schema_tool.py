@@ -45,3 +45,6 @@ def get_database_schema(user_id: int) -> str:
 
     # Step 6: Return schema
     return schema_text
+
+
+schema_tool = get_database_schema
