@@ -15,5 +15,5 @@ cp .env.example .env    # fill in SECRET_KEY and OPENAI_API_KEY
 docker compose up --build
 Heads-up before first push:
 
-The Dockerfile builds from app/ — but your CI/lint currently expects the same. pyproject.toml says requires-python = ">=3.14" while the image is 3.12 — I'd suggest loosening that to >=3.12 so tooling doesn't complain. Want me to update it?
+The Dockerfile builds from backend/ — CI/lint targets the same path. pyproject.toml says requires-python = ">=3.14" while the image is 3.12 — I'd suggest loosening that to >=3.12 so tooling doesn't complain. Want me to update it?
 create_tables.py runs on import of settings and needs a live DB — the Docker build won't run it, but if you want table creation on container start, we should add an entrypoint script.

@@ -48,6 +48,9 @@ README.md
 *.md
 LICENSE
 
+# Frontend (built separately in its own image)
+frontend/
+
 # Local databases
 *.db
 *.sqlite3

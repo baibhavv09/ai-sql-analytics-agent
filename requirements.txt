@@ -59,6 +59,8 @@ email-validator
 # ============================
 python-jose[cryptography]
 passlib[bcrypt]
+# passlib 1.7's bcrypt backend probe fails against bcrypt 5.x (rejects >72-byte inputs).
+bcrypt<5
 
 # ============================
 # Logging
@@ -94,7 +96,7 @@ flake8
 # ============================
 tabulate
 orjson
-
+redis
 
 # uv pip install python-jose[cryptography] passlib[bcrypt] 
 # uv pip install 'pydantic[email]'
